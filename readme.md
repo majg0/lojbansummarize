@@ -1,0 +1,1 @@
+This repository will incrementally contain summarizations meant for personal understanding only and will be quite cryptic as only meant for memorizing the language. However, they may prove useful to you anyway.
