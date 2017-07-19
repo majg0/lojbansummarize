@@ -1,0 +1,12 @@
+lojban commands
+
+mv		muvdu
+cp		fukpi
+cd 		ficybi'o cmimei
+rm		vimcu
+touch	pencu
+mkdir 	cmimei
+rmdir	vimcu cmimei
+/t 		goi
+ctrl-C	nagoi
+"name" 	skami x skami
