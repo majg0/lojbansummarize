@@ -41,15 +41,19 @@ async function run () {
     })
 
   console.log('type the lojban words matching the swedish descriptions')
-  for (let i = 0; i !== 10; ++i) {
+
+  let correct = 0
+  for (let total = 1; total !== 51; ++total) {
     const week1 = weeklyDictionaries[0]
     const word = week1[rand(week1.length)]
     const a = await ask(`${word.swedish}?\n`)
     if (a === word.valsi) {
       console.log('Correct!\n')
+      ++correct
     } else {
-      console.log('Nope!\n')
+      console.log(`Nope! - ${word.valsi}\n`)
     }
+    console.log(`${correct}/${total} (${(100 * correct / total).toFixed(0)}%)\n`)
   }
 
   rl.close()
