@@ -60,7 +60,7 @@ Vecka 2
 | åtta | bi | biv |  |  |
 | nio | so | soz |  |  |
 | noll | no | non |  |  |
-| pizza |  |  |  |  |
+| pizza | cidjrpitsa |  | x1 is a pizza with topping / ingredients x2. |  |
 | falafel | cidjrfalyfil |  | x1 är en kvantitet/är gjord av/innehåller falafel [friterade kikärtsbollar] serverad i brød/på tallrik x2 gjord på/tillsammans med ingredienser x3.  |
 
 
