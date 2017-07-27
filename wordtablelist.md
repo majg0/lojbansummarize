@@ -55,7 +55,7 @@ Vecka 2
 | tre | ci | cib |  |  |
 | fyra | vo | von  |  |  |
 | fem | mu  | mum |  |  |
-| sex | xu | xav |  |  |
+| sex | xa | xav |  |  |
 | sju | ze | zel |  |  |
 | åtta | bi | biv |  |  |
 | nio | so | soz |  |  |

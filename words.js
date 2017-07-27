@@ -1,21 +1,43 @@
 const { readFile } = require('fs')
 const { promisify } = require('util')
+// const process = require('process')
 const readline = require('readline')
 
 const rf = promisify(readFile)
+// const args = process.argv.slice(2)
 
 const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout
 })
 
-function ask (q) {
-  return new Promise(resolve => rl.question(q, resolve))
+async function getinput (q) {
+  return new Promise(resolve => rl.question(`${q}?\n`, resolve))
+}
+
+async function ask (word, [from, to]) {
+  const answer = await getinput(word[from])
+  const correct = word[to]
+  if (answer === correct) {
+    return true
+  } else {
+    return correct
+  }
 }
 
 function rand (max) {
-  return Math.floor(Math.random() * max);
+  return Math.floor(Math.random() * max)
 }
+
+const swedishToValsi = ['swedish', 'valsi']
+// const exampleToValsi = ['example', 'valsi']
+// const placeStructureToValsi = ['placeStructure', 'valsi']
+
+// const allTypes = [
+//   swedishToValsi,
+//   placeStructureToValsi,
+//   exampleToValsi
+// ]
 
 async function run () {
   const data = await rf('wordtablelist.md', 'utf8')
@@ -30,30 +52,33 @@ async function run () {
       // console.log(weeklyWords)
       return weeklyWords
         .filter(([ swedish, valsi ]) => swedish && valsi)
-        .map(([ swedish, valsi, rafsi, placeStructure ]) => {
+        .map(([ swedish, valsi, rafsi, placeStructure, example ]) => {
           return {
             swedish,
             valsi,
             rafsi: rafsi ? rafsi.trim().split(' ') : [],
-            placeStructure
+            placeStructure,
+            example
           }
         })
     })
 
   console.log('type the lojban words matching the swedish descriptions')
 
-  let correct = 0
+  const week = Number(await getinput('What week')) - 1
+
+  let numCorrect = 0
   for (let total = 1; total !== 51; ++total) {
-    const week1 = weeklyDictionaries[0]
+    const week1 = weeklyDictionaries[week]
     const word = week1[rand(week1.length)]
-    const a = await ask(`${word.swedish}?\n`)
-    if (a === word.valsi) {
+    const correct = await ask(word, swedishToValsi)
+    if (correct === true) {
       console.log('Correct!\n')
-      ++correct
+      ++numCorrect
     } else {
-      console.log(`Nope! - ${word.valsi}\n`)
+      console.log(`Nope! - ${correct}\n`)
     }
-    console.log(`${correct}/${total} (${(100 * correct / total).toFixed(0)}%)\n`)
+    console.log(`${numCorrect}/${total} (${(100 * numCorrect / total).toFixed(0)}%)\n`)
   }
 
   rl.close()
