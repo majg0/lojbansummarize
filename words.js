@@ -22,7 +22,7 @@ async function run () {
   // const a = data.split('\n\n')
 
   const weeklyDictionaries = data
-    .split('|---------|-------|-------|-----------------|')
+    .split('|---------|-------|-------|-----------------|---------------|')
     .slice(1, -1) // first is garbage, last is table template
     .map(x => {
       const wordList = x.split('\n\n')[0].trim().split('\n')
